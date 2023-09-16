@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import LoginPage from "./components/Login";
+import VaccineRegisterPage from "./components/register";
 
 function App() {
   return (
@@ -27,14 +29,6 @@ function App() {
       </div>
     </Router>
   );
-}
-
-function LoginPage() {
-  return <h2>Login Page</h2>;
-}
-
-function VaccineRegisterPage() {
-  return <h2>Vaccine Register Page</h2>;
 }
 
 export default App;
