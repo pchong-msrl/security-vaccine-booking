@@ -4,6 +4,7 @@ import LoginPage from "./components/Login";
 import VaccineRegisterPage from "./components/register";
 import {AuthProvider} from "./components/context/authContext";
 import NavBar from "./components/navBar";
+import BookingRecord from "./components/bookingRecord";
 
 function App() {
 
@@ -20,6 +21,9 @@ function App() {
           <Route path="/vaccine-register">
             <VaccineRegisterPage />
           </Route>
+            <Route path="/bookingRecord">
+                <BookingRecord/>
+            </Route>
         </Switch>
       </div>
       </AuthProvider>

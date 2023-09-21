@@ -8,13 +8,17 @@ const NavBar = () =>{
 
         <div style={{display:'flex',flexDirection:"row",justifyContent:"space-between"}}>
 
-            <div>
+            <div style={{display:"flex",flexDirection:"row"}}>
                 <Link to="/vaccine-register">Vaccine Register</Link>
+                <div style={{width:"1rem"}}></div>
+                {token&&    <Link to="/bookingRecord">list Booking Record</Link>}
             </div>
             <div>
             {token? <button onClick={()=>{setToken(undefined)}}>Log out</button>:
 
-                <Link to="/login">Login</Link>
+
+                        <Link to="/login">Login</Link>
+
              }
             </div>
         </div>
