@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import config from "../config";
+import fetch_register, {ICreateUser} from "../api/user/register.api";
 
 function VaccineRegister() {
   const [englishName, setEnglishName] = useState("");
   const [chineseName, setChineseName] = useState("");
   const [gender, setGender] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
   const [address, setAddress] = useState("");
   const [placeOfBirth, setPlaceOfBirth] = useState("");
   const [vaccineBrand, setVaccineBrand] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
+
+  useEffect(()=>{
+    console.log(placeOfBirth)
+  },[dateOfBirth])
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle form submission here
   };
+
+
 
   return (
     <div>
@@ -53,8 +62,14 @@ function VaccineRegister() {
           Date of Birth:
           <input
             type="date"
-            value={dateOfBirth}
-            onChange={(event) => setDateOfBirth(event.target.value)}
+            value={
+                dateOfBirth.getFullYear().toString() +
+                "-" +
+                (dateOfBirth.getMonth() + 1).toString().padStart(2, "0")+
+                "-" +
+                dateOfBirth.getDate().toString().padStart(2, "0")
+            }
+            onChange={(event) => setDateOfBirth(new Date(event.target.value))}
           />
         </label>
         <br />
@@ -76,6 +91,11 @@ function VaccineRegister() {
         </label>
         <br />
         <label>
+          Phone Number
+        </label>
+        <input value={phoneNumber} onChange={(event)=>setPhoneNumber(event.target.value)}/>
+        <br />
+        <label>
           Vaccine Brand:
           <select
             value={vaccineBrand}
@@ -89,7 +109,19 @@ function VaccineRegister() {
           </select>
         </label>
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={async ()=>{
+
+          const _payload:ICreateUser = {
+            englishName: englishName,
+            chineseName: chineseName,
+            dateOfBirth: dateOfBirth,
+            address: address,
+            placeOfBirth: placeOfBirth,
+            vaccineBrand: vaccineBrand,
+            phoneNumber:phoneNumber
+          }
+        await fetch_register(_payload)
+        }}>Submit</button>
       </form>
     </div>
   );
