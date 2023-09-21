@@ -8,9 +8,10 @@ function LoginPage() {
   const [password,setPassword] = useState('')
 
   const handleLogin = async ()=>{
-    const jwt = await login({username,password})
+    // const jwt = await login({username,password}) -> use api
+    const jwt = "asdsad"
     if(jwt){
-      setToken("asdsad")
+      setToken(jwt)
     }
   }
   return <>
