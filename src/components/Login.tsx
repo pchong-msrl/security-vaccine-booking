@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {useAuth} from "./hook/useAuth";
 import login from "../api/admin/login";
+import contraner from "./contraner";
+import Contraner from "./contraner";
 
 function LoginPage() {
   const {token,setToken}= useAuth()
@@ -14,9 +16,8 @@ function LoginPage() {
       setToken(jwt)
     }
   }
-  return <>
-    <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
-      <div style={{display:"flex", flexDirection:"column", width:"40%"}}>
+  return (
+      <Contraner>
         <div style={{marginTop:"2rem"}}></div>
         <input value={username} onChange={(e)=>setUsername(e.target.value)} placeholder={"Username"}/>
         <div style={{marginTop:"2rem"}}></div>
@@ -25,10 +26,8 @@ function LoginPage() {
         <button onClick={async ()=>{
           await handleLogin()
         }}>Login</button>
-      </div>
-    </div>
-  </>
-
+      </Contraner>
+)
 
 }
 

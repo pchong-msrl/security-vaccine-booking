@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import config from "../config";
 import fetch_register, {ICreateUser} from "../api/user/register.api";
+import Contraner from "./contraner";
 
 function VaccineRegister() {
   const [englishName, setEnglishName] = useState("");
@@ -24,7 +25,7 @@ function VaccineRegister() {
 
 
   return (
-    <div>
+    <Contraner>
       <h2>Vaccine Registration Form</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -123,7 +124,7 @@ function VaccineRegister() {
         await fetch_register(_payload)
         }}>Submit</button>
       </form>
-    </div>
+    </Contraner>
   );
 }
 
