@@ -5,20 +5,12 @@ import VaccineRegisterPage from "./components/register";
 import {AuthProvider} from "./components/context/authContext";
 
 function App() {
+
   return (
     <Router>
       <AuthProvider>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/vaccine-register">Vaccine Register</Link>
-            </li>
-          </ul>
-        </nav>
+
 
         <Switch>
           <Route path="/login">
