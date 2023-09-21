@@ -15,13 +15,17 @@ function LoginPage() {
     }
   }
   return <>
-    <div>
-      <h2>{token}</h2>;
-      <input/>
-      <input/>
-      <button onClick={async ()=>{
-        await handleLogin()
-      }}></button>
+    <div style={{width:"100%", display:"flex", justifyContent:"center"}}>
+      <div style={{display:"flex", flexDirection:"column", width:"40%"}}>
+        <div style={{marginTop:"2rem"}}></div>
+        <input value={username} onChange={(e)=>setUsername(e.target.value)} placeholder={"Username"}/>
+        <div style={{marginTop:"2rem"}}></div>
+        <input value={password} onChange={(e)=>setPassword(e.target.value)} placeholder={"Password"}/>
+        <div style={{marginTop:"2rem"}}></div>
+        <button onClick={async ()=>{
+          await handleLogin()
+        }}>Login</button>
+      </div>
     </div>
   </>
 

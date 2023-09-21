@@ -4,17 +4,20 @@ import {useAuth} from "./hook/useAuth";
 
 const NavBar = () =>{
   const {token,setToken} = useAuth()
-   return <nav>
-        <ul>
+   return <nav style={{background:"white",borderStyle:"double",padding:"1rem 4rem"}}>
 
-            <li>
+        <div style={{display:'flex',flexDirection:"row",justifyContent:"space-between"}}>
+
+            <div>
                 <Link to="/vaccine-register">Vaccine Register</Link>
-            </li>
+            </div>
+            <div>
             {token? <button onClick={()=>{setToken(undefined)}}>Log out</button>:
-                <li>
+
                 <Link to="/login">Login</Link>
-            </li> }
-        </ul>
+             }
+            </div>
+        </div>
     </nav>
 }
 export default NavBar

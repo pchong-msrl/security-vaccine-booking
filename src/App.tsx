@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-      <div>
+      <div >
         <NavBar></NavBar>
 
         <Switch>
