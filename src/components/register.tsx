@@ -124,7 +124,7 @@ function VaccineRegister() {
             await fetch_register(_payload);
           }}
         >
-          Submit
+          register vaccine user
         </button>
       </form>
     </Contraner>
