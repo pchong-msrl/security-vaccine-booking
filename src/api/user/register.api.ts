@@ -4,6 +4,7 @@ import config from "../../config";
 export interface ICreateUser {
   englishName: string;
   chineseName: string;
+  gender: string;
   dateOfBirth: Date;
   address: string;
   placeOfBirth: string;
