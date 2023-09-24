@@ -16,27 +16,9 @@ function VaccineRegister() {
   useEffect(() => {
     console.log(placeOfBirth);
   }, [dateOfBirth]);
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const payload: ICreateUser = {
-      englishName,
-      chineseName,
-      gender,
-      dateOfBirth,
-      address,
-      placeOfBirth,
-      vaccineBrand,
-      phoneNumber,
-    };
-    try {
-      const response = await fetch_register(payload);
-      console.log(response); // Log the message to the console
-      // Display the message to the user using an alert or a toast notification
-      alert(response);
-    } catch (error) {
-      console.error(error);
-      // Display an error message to the user using an alert or a toast notification
-    }
+    // Handle form submission here
   };
 
   return (
