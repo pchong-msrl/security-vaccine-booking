@@ -17,7 +17,9 @@ const fetch_register = async (input: ICreateUser) => {
   const fetch = await axios.post(url.href, input);
   console.log(fetch.data);
   alert(fetch.data.message);
-  localStorage.setItem("userId", fetch.data._id); // Store the _id in localStorage
+  // Store the _id in localStorage
+  localStorage.setItem("userId", fetch.data._id);
+  // console.log the userid after login
   console.log(localStorage.getItem("userId"));
 };
 

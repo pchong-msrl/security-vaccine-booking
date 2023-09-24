@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import config from "../config";
 import fetch_register, { ICreateUser } from "../api/user/register.api";
+import getAvailable from "../api/user/getAvailable";
 import Contraner from "./contraner";
 
 function VaccineRegister() {
@@ -12,6 +13,7 @@ function VaccineRegister() {
   const [placeOfBirth, setPlaceOfBirth] = useState("");
   const [vaccineBrand, setVaccineBrand] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
   useEffect(() => {
     console.log(placeOfBirth);
@@ -20,6 +22,19 @@ function VaccineRegister() {
     event.preventDefault();
     // Handle form submission here
   };
+
+  const [timeSlots, setTimeSlots] = useState<
+    { _id: string; startTime: string; endTime: string }[] | null
+  >(null);
+
+  useEffect(() => {
+    const fetchTimeSlots = async () => {
+      const res = await getAvailable();
+      setTimeSlots(res);
+    };
+
+    fetchTimeSlots();
+  }, []);
 
   return (
     <Contraner>
@@ -126,6 +141,22 @@ function VaccineRegister() {
         >
           register vaccine user
         </button>
+        <label>
+          Time Slot:
+          <select>
+            {timeSlots &&
+              timeSlots.length > 0 &&
+              timeSlots!.map((timeSlot) => (
+                <option key={timeSlot._id} value={timeSlot._id}>
+                  {new Date(timeSlot.startTime).toLocaleString()}
+                </option>
+              ))}
+          </select>
+          <select
+            value={selectedTimeSlot}
+            onChange={(e) => setSelectedTimeSlot(e.target.value)}
+          ></select>
+        </label>
       </form>
     </Contraner>
   );
