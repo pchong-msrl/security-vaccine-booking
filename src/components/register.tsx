@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import config from "../config";
 import fetch_register, { ICreateUser } from "../api/user/register.api";
+import registerTimeSlot, { ITimeslot } from "../api/user/registerTimeSlot";
 import getAvailable from "../api/user/getAvailable";
 import Contraner from "./contraner";
 
@@ -18,10 +19,16 @@ function VaccineRegister() {
   useEffect(() => {
     console.log(placeOfBirth);
   }, [dateOfBirth]);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle form submission here
   };
+
+  function handleSubmit2(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log(selectedTimeSlot); // This will log the selected time slot's _id value
+  }
 
   const [timeSlots, setTimeSlots] = useState<
     { _id: string; startTime: string; endTime: string }[] | null
@@ -141,9 +148,16 @@ function VaccineRegister() {
         >
           register vaccine user
         </button>
+        <br />
+      </form>
+
+      <form onSubmit={handleSubmit2}>
         <label>
           Time Slot:
-          <select>
+          <select
+            value={selectedTimeSlot}
+            onChange={(e) => setSelectedTimeSlot(e.target.value)}
+          >
             {timeSlots &&
               timeSlots.length > 0 &&
               timeSlots!.map((timeSlot) => (
@@ -152,11 +166,23 @@ function VaccineRegister() {
                 </option>
               ))}
           </select>
-          <select
-            value={selectedTimeSlot}
-            onChange={(e) => setSelectedTimeSlot(e.target.value)}
-          ></select>
         </label>
+        <br />
+        <button
+          type="submit"
+          onClick={async () => {
+            const userId = localStorage.getItem("userId");
+            if (userId) {
+              const _payload = {
+                vaccineUserId: userId,
+                timeSlotId: selectedTimeSlot,
+              };
+              await registerTimeSlot(_payload);
+            }
+          }}
+        >
+          Register Time Slot
+        </button>
       </form>
     </Contraner>
   );
