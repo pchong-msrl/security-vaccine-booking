@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "./hook/useAuth";
 
 import GetAllTimeslots from "../api/admin/listAllTimeSlot";
+import Injested from "../api/admin/injested";
 
 const BookingRecord = () => {
   const { token } = useAuth();
@@ -18,6 +19,11 @@ const BookingRecord = () => {
     };
     fetchRecords();
   }, []);
+
+  const handleInjest = async (id: any) => {
+    const res = await Injested(token, id);
+    alert(`vaccine injested`);
+  };
 
   if (!token) {
     return <div>Unauthorized, only admin can access</div>;
@@ -49,6 +55,11 @@ const BookingRecord = () => {
                 ).toLocaleDateString()}
               </td>
               <td>{record.registeredUserId.vaccineBrand}</td>
+              <td>
+                <button onClick={() => handleInjest(record._id)}>
+                  Mark as Ingested
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
