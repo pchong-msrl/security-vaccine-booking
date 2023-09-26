@@ -13,7 +13,8 @@ function LoginPage() {
     const jwt = await login({ username, password });
     // const jwt = "asdsad"
     if (jwt) {
-      setToken(jwt);
+      setToken(jwt.token);
+      // console.log(`jwt: ${jwt.token}`);
     }
   };
   return (
