@@ -14,7 +14,7 @@ const BookingRecord = () => {
       console.log(`test token:${token}`);
       const data = await GetAllTimeslots(`${token}`);
 
-      setRecords(data.timeslotsWithRegisteredUsers);
+      setRecords(data);
     };
     fetchRecords();
   }, []);
